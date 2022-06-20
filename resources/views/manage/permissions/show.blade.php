@@ -11,7 +11,7 @@
 
             </div>
             <div class="column">
-                <a href="{{route('permissions.edit', $user->id)}}" class="button is-primary is-pulled-right"><i class="fa fa-user m-r-10"></i>
+                <a href="{{route('permissions.edit', $permission->id)}}" class="button is-primary is-pulled-right"><i class="fa fa-user m-r-10"></i>
                     Edit
                 </a>
             </div>
@@ -22,14 +22,20 @@
 
                 <div class="field">
                     <label for="name" class="label">Name</label>
-                    <pre>{{$user->name}}
+                    <pre>{{$permission->name}}
                         </pre>
                 </div>
 
 
                 <div class="field">
-                    <label for="email" class="label">Email</label>
-                    <pre>{{$user->email}}
+                    <label for="email" class="label">Display Name</label>
+                    <pre>{{$permission->display_name}}
+                        </pre>
+                </div>
+
+                <div class="field">
+                    <label for="email" class="label">Description</label>
+                    <pre>{{$permission->description}}
                         </pre>
                 </div>
 @endsection

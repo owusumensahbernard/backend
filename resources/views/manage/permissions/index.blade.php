@@ -39,7 +39,8 @@
                             <td>{{$permission->name}}</td>
                             <td>{{$permission->display_name}}</td>
                             <td>{{$permission->description}}</td>
-                            <td><a class="button is-outlined" href="{{route('permissions.show', $permission->id)}}">Edit</a></td>
+                            <td><a class="button is-outlined" href="{{route('permissions.show', $permission->id)}}">View</a></td>
+                            <td><a class="button is-outlined" href="{{route('permissions.edit', $permission->id)}}">Edit</a></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -48,8 +49,7 @@
         </div>
     </div>
 
-
-{{--    {{$permission->links()}}--}}
+    {{$permissions->links()}}
 
 
 

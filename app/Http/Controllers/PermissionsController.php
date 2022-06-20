@@ -17,7 +17,7 @@ class PermissionsController extends Controller
     public function index()
     {
         //
-        $permissions = Permission::orderBy('id','asc')->paginate(3);
+        $permissions = Permission::orderBy('id','asc')->paginate(6);
         return view('manage.permissions.index')->withPermissions($permissions);
     }
 
@@ -59,7 +59,7 @@ class PermissionsController extends Controller
         }
         else {
             session::flash('danger', 'Sorry a problem occured whiles creating this Permission');
-            return redirect()->route('users.$permission');
+            return redirect()->route('permissions.create')->withInput();
         }
 
     }
