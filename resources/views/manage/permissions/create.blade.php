@@ -18,14 +18,14 @@
 
                     <div class="block">
                      <b-radio-group v-model="permissionType">
-                         <b-radio name="permission_type" value="basic">Basic Permission</b-radio>
-                         <b-radio name="permission_type" value="crud">CRUD Permission</b-radio>
+                         <b-radio name="permission_type" native-value="basic">Basic Permission</b-radio>
+                         <b-radio name="permission_type" native-value="crud">CRUD Permission</b-radio>
 
                      </b-radio-group>
 
                     </div>
 
-                    <div class="field" v-if="permissionType == 'basic'"  >                                                                                                                                                                      >
+                    <div class="field" v-if="permissionType == 'basic'">                                                                                                                                                                      >
                         <label for="display_name" class="label">Name (Display Name)</label>
                         <p class="control">
                             <input type="text" class="input" name="display_name" required id="display_name">
@@ -55,7 +55,7 @@
                         </p>
                     </div>
 
-                    <div class="columns" v-if="permissionType == 'crud'"  >
+                    <div class="columns" v-if="permissionType == 'crud'">
                         <div class="column">
                             <b-checkbox-group v-model="crudSelected">
 

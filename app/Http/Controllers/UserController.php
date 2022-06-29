@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = User::orderBy('id','asc')->paginate(3);
+        $users = User::orderBy('id','asc')->paginate(6);
         return  view('manage.users.index', ["users"=>$users]);
     }
 
@@ -48,10 +48,10 @@ class UserController extends Controller
             'email' => 'required|email|unique:users'
 
         ]);
-     //   ddd($request->all());
-        if(Request::has('password')&& !empty($request->password)){
+
+        if((new \Illuminate\Http\Request)->has('password')&& !empty($request->password)){
          $password = trim($request->password);
-          //  ddd($password);
+
         } else{
             $length = 10;
             $keyspace = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -71,11 +71,13 @@ class UserController extends Controller
 
 
         if($user->save()){
-            session::flash('success', 'user successfully added');
+
+            session()->flash('success', 'user successfully added');
+          //  session::flash('success', 'user successfully added');
           return redirect()->route('users.show', $user->id);
         }
         else {
-            session::flash('danger', 'Sorry a problem occured whiles creating this user');
+            session()->flash('success', 'user unsuccessfully added');
          return redirect()->route('users.create');
     }
     }
@@ -115,16 +117,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //ddd($request->all());
+
         $this->validate($request, [
             'name' => 'required|max:255',
-            'email' => 'required|email|unique:users,email,'.$id
+            'email' => 'required|email|unique:users,email,' . $id
         ]);
-      $user = User::findOrFail($id);
-      $user->name = $request->name;
-      $user->email = $request->email;
-      if($request->password_options == 'auto')
-      {
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->password_options == 'auto') {
+
+
           $length = 10;
           $keyspace = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
           $str ='';
@@ -142,12 +146,16 @@ class UserController extends Controller
 
       if($user->save())
       {
+
+
+          session::flash('success', 'User profile edited Successfully');
           return redirect()->route('users.show', $id);
       }
 else {
     session::flash('error', 'There was a problem saving the updated user information. Please try again later');
     return redirect()->route('users.edit', $id);
 }
+
     }
 
     /**

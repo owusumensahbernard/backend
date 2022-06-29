@@ -33,21 +33,21 @@
                     <div class="field">
                         <label for="password" class="label">Password</label>
 
-                            <b-radio-group v-model="password_options">
+                            <b-radio-group v-model="password_options" name="password_options">
                                 <div class="field">
-                                <b-radio value="keep">Do not Change Password</b-radio>
+                                <b-radio  name="password_options" v-model="password_options" native-value="keep">Do not Change Password</b-radio>
                                 </div>
                                 <div class="field">
-                                    <b-radio value="auto">Auto Generate Password</b-radio>
+                                    <b-radio name="password_options"  v-model="password_options" native-value="auto">Auto Generate Password</b-radio>
                                 </div>
                                 <div class="field">
-                                    <b-radio value="manual">Manually set New Password</b-radio>
-
+                                    <b-radio name="password_options" v-model="password_options" native-value="manual">Manually set New Password</b-radio>
 
                                <p class="control">
-                            <input type="text" class="input" required name="password" id="password" v-if="password_options == 'manual'" placeholder="Enter Password">
+                            <input type="password" class="input" required name="password" id="password" v-if="password_options == 'manual'" placeholder="Enter Password">
+                               </p>
 
-                        </p>
+
                                 </div>
 
                         </b-radio-group>
